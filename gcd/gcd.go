@@ -27,10 +27,10 @@ func main() {
 	x := nextInt()
 	y := nextInt()
 
-	fmt.Println(gcd(x, y))
+	fmt.Println(Gcd(x, y))
 }
 
-func gcd(x int, y int) int {
+func Gcd(x int, y int) int {
 	for y > 0 {
 		r := x % y
 		x = y
