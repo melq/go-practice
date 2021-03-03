@@ -22,34 +22,45 @@ func nextInt() int {
 	return i
 }
 
+func dump(s []int) {
+	for i, v := range s {
+		if i == 0 {
+			fmt.Print(strconv.Itoa(v))
+		} else {
+			fmt.Print(" ")
+			fmt.Print(strconv.Itoa(v))
+		}
+	}
+	fmt.Print("\n")
+}
+
 func main() {
 	sc.Split(bufio.ScanWords)
 	n := nextInt()
 
-	var a []int
+	var s []int
 	for i := 0; i < n; i++ {
 		tmp := nextInt()
-		a = append(a, tmp)
+		s = append(s, tmp)
 	}
 
-	fmt.Println(InsertSort(a))
+	dump(InsertSort(s))
 }
 
-func InsertSort (a []int) []int {
-	n := len(a)
+func InsertSort (s []int) []int {
+	n := len(s)
 
 	for i := 0; i < n; i++ {
-		v := a[i]
+		v := s[i]
 		j := i - 1
 		for ; j >= 0; j-- {
-			if a[j] > v {
-				a[j + 1] = a[j]
+			if s[j] > v {
+				s[j + 1] = s[j]
 			} else {
 				break
 			}
 		}
-		a[j + 1] = v
-		//fmt.Println(a)
+		s[j + 1] = v
 	}
-	return a
+	return s
 }
