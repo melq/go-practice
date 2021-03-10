@@ -44,10 +44,11 @@ func main() {
 		s = append(s, tmp)
 	}
 
-	dump(SelectionSort(s))
+	SelectionSort(s)
+	dump(s)
 }
 
-func SelectionSort(s []int) []int {
+func SelectionSort(s []int) {
 	n := len(s)
 	for i := 0; i < n; i++ {
 		minIndex := i
@@ -63,6 +64,4 @@ func SelectionSort(s []int) []int {
 			s[minIndex] = tmp
 		}
 	}
-
-	return s
 }

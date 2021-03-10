@@ -44,10 +44,11 @@ func main() {
 		s = append(s, tmp)
 	}
 
-	dump(InsertSort(s))
+	InsertSort(s)
+	dump(s)
 }
 
-func InsertSort (s []int) []int {
+func InsertSort (s []int) {
 	n := len(s)
 
 	for i := 0; i < n; i++ {
@@ -62,5 +63,4 @@ func InsertSort (s []int) []int {
 		}
 		s[j + 1] = v
 	}
-	return s
 }

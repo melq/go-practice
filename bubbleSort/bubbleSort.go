@@ -44,10 +44,11 @@ func main() {
 		s = append(s, tmp)
 	}
 
-	fmt.Println(BubbleSort(s))
+	BubbleSort(s)
+	dump(s)
 }
 
-func BubbleSort(s []int) []int {
+func BubbleSort(s []int) {
 	n := len(s)
 	for i := 0; i < n; i++ {
 		for j := n - 1; j > i; j-- {
@@ -58,5 +59,4 @@ func BubbleSort(s []int) []int {
 			}
 		}
 	}
-	return s
 }
