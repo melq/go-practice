@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Stack []int
@@ -38,36 +39,52 @@ func NewStack() *Stack {
 
 var sc = bufio.NewScanner(os.Stdin)
 
-func next() string {
+func nextLine() string {
 	sc.Scan()
 	return sc.Text()
 }
 
-func nextInt() int {
-	i, err := strconv.Atoi(next())
+func numCheck(s string) bool {
+	_, err := strconv.Atoi(s)
 	if err != nil {
-		fmt.Print(err)
-		panic(err)
+		return false
 	}
-	return i
+	return true
+}
+
+func doCalc(a int, b int, op string) int {
+	switch op {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "*":
+		return a * b
+	default:
+		return 0
+	}
 }
 
 func main() {
-	sc.Split(bufio.ScanWords)
-	//n := nextInt()
-
 	s := NewStack()
-	s.Push(1)
-	s.Push(2)
-	v, _ := s.Pop()
-	fmt.Println(v)
-	v, _ = s.Pop()
-	fmt.Println(v)
-	//var s []int
-	//for i := 0; i < n; i++ {
-	//	tmp := nextInt()
-	//	s = append(s, tmp)
-	//}
-	//
-	//fmt.Println(n, s)
+
+	slice := strings.Split(nextLine(), " ")
+	for _, v := range slice {
+		if numCheck(v) {
+			n, _ := strconv.Atoi(v)
+			s.Push(n)
+		} else {
+			var a, b int
+			var err error
+			b, err = s.Pop()
+			a, err = s.Pop()
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+			s.Push(doCalc(a, b, v))
+		}
+	}
+
+	fmt.Println(strconv.Itoa((*s)[0]))
 }
