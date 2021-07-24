@@ -58,14 +58,29 @@ func nextInt() int {
 func main() {
 	sc.Split(bufio.ScanWords)
 	n := nextInt()
-	/*quantum := */nextInt()
-
+	quantum := nextInt()
+	sumTime := 0
 	q := NewQueue()
+
 	for i := 0; i < n; i++ {
 		name := next(); time := nextInt()
 		data := Data{name, time}
 		q.Enqueue(data)
 	}
 
-	fmt.Println(n, q)
+	for ; !q.Empty(); {
+		data, err := q.Dequeue()
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		if data.time > quantum {
+			data.time -= quantum
+			sumTime += quantum
+			q.Enqueue(data)
+		} else {
+			sumTime += data.time
+			fmt.Println(data.name, sumTime)
+		}
+	}
 }
