@@ -56,18 +56,16 @@ func nextInt() int {
 }
 
 func main() {
+	sc.Split(bufio.ScanWords)
+	n := nextInt()
+	/*quantum := */nextInt()
+
 	q := NewQueue()
-	
-	//sc.Split(bufio.ScanWords)
-	//n := nextInt()
-	//quantum := nextInt()
-	//
-	//var s []map[string]int
-	//for i := 0; i < n; i++ {
-	//	name := next(); time := nextInt()
-	//	tmp := map[string]int {name: time}
-	//	s = append(s, tmp)
-	//}
-	//
-	//fmt.Println(n, s)
+	for i := 0; i < n; i++ {
+		name := next(); time := nextInt()
+		data := Data{name, time}
+		q.Enqueue(data)
+	}
+
+	fmt.Println(n, q)
 }
