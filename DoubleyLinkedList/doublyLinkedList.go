@@ -47,7 +47,7 @@ func (list *DoublyLinkedList) Delete(v int) {
 }
 
 func (list *DoublyLinkedList) DeleteFirst() {
-	if list.Size() <= 1 {
+	if list.firstNode == list.lastNode {
 		list.firstNode = nil
 		list.lastNode = nil
 	} else {
@@ -57,7 +57,7 @@ func (list *DoublyLinkedList) DeleteFirst() {
 }
 
 func (list *DoublyLinkedList) DeleteLast() {
-	if list.Size() <= 1 {
+	if list.firstNode == list.lastNode {
 		list.firstNode = nil
 		list.lastNode = nil
 	} else {
@@ -75,12 +75,14 @@ func (list *DoublyLinkedList) Size() int {
 }
 
 func (list *DoublyLinkedList) Empty() bool {
-	return list.Size() == 0
+	return list.firstNode == nil && list.lastNode == nil
 }
 
 func (list * DoublyLinkedList) Dump() {
-	for node := list.firstNode; node != nil; node = node.next {
-		fmt.Printf("%d ", node.key)
+	node := list.firstNode
+	fmt.Print(node.key)
+	for node = node.next; node != nil; node = node.next {
+		fmt.Printf(" %d", node.key)
 	}
 	fmt.Print("\n")
 }
@@ -106,28 +108,24 @@ func nextInt() int {
 }
 
 func main() {
+	sc.Split(bufio.ScanWords)
+	n := nextInt()
+
 	list := NewDoublyLinkedList()
-	fmt.Println("Empty: ", list.Empty())
-	for i := 5; i > 0; i-- {
-		list.Insert(i)
+	for i := 0; i < n; i++ {
+		command := next()
+		switch command {
+		case "insert":
+			key := nextInt()
+			list.Insert(key)
+		case "delete":
+			key := nextInt()
+			list.Delete(key)
+		case "deleteFirst":
+			list.DeleteFirst()
+		case "deleteLast":
+			list.DeleteLast()
+		}
 	}
 	list.Dump()
-	fmt.Println("Size: ", list.Size())
-	fmt.Println("Empty: ", list.Empty())
-	fmt.Println("first: ", *list.firstNode, "last: ", *list.lastNode)
-	list.Delete(3)
-	list.DeleteLast()
-	list.DeleteFirst()
-	list.Dump()
-
-	//sc.Split(bufio.ScanWords)
-	//n := nextInt()
-	//
-	//var s []int
-	//for i := 0; i < n; i++ {
-	//	tmp := nextInt()
-	//	s = append(s, tmp)
-	//}
-	//
-	//fmt.Println(n, s)
 }
