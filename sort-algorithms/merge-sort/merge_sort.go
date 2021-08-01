@@ -47,11 +47,11 @@ func merge(s []int, l int, mid int, r int) {
 	}
 }
 
-func mergeSort(s []int, l int, r int) {
+func MergeSort(s []int, l int, r int) {
 	if l + 1 < r {
 		mid := (l + r) / 2
-		mergeSort(s, l, mid)
-		mergeSort(s, mid, r)
+		MergeSort(s, l, mid)
+		MergeSort(s, mid, r)
 		merge(s, l, mid, r)
 	}
 }
@@ -64,7 +64,7 @@ func main() {
 	for i := 0; i < n; i++ {
 		s = append(s, nextInt())
 	}
-	mergeSort(s, 0, n)
+	MergeSort(s, 0, n)
 
 	dump(s)
 	fmt.Println(m)
