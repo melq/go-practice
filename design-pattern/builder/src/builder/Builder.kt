@@ -3,6 +3,6 @@ package builder
 interface Builder {
     fun setTitle(title: String)
     fun addString(str: String)
-    fun addItem(item: Array<String>)
+    fun addItems(items: Array<String>)
     fun close()
 }

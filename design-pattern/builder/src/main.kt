@@ -1,3 +1,8 @@
+import builder.Guide
+import builder.TextBuilder
+
 fun main(args: Array<String>) {
-    println("hello")
+    val builder = TextBuilder()
+    Guide(builder).doGuide()
+    println(builder.buffer.toString())
 }
